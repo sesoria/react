@@ -2,7 +2,8 @@ import { createBrowserRouter } from 'react-router-dom';
 import App from '../App';
 import ErrorPage from '../pages/Error';
 import Index from '../pages/Index';
-import StreamPage from '../pages/StreamPage';
+import StreamingPage from '../pages/StreamingPage';
+import StreamsPage from '../pages/StreamsPage';
 
 const router = createBrowserRouter([
     {
@@ -15,8 +16,12 @@ const router = createBrowserRouter([
                 children: [
                     { index: true, element: <Index /> },
                     {
+                        path: "streams",
+                        element: <StreamsPage />
+                    },
+                    {
                         path: "streams/:streamId",
-                        element: <StreamPage />
+                        element: <StreamingPage />
                     },
                     {
                         path: "videos/:videoId",

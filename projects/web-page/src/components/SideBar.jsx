@@ -8,11 +8,17 @@ import ListItem from '@mui/material/ListItem';
 import MuiListItemButton from '@mui/material/ListItemButton';
 import MuiListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import { Toolbar } from '@mui/material';
 import { useContext } from 'react';
 import SidebarContext from '../context/SidebarContext';
+import { Link } from 'react-router-dom';
+
+const menuItems = [
+    { name: 'Browse', icon: <VideoLibraryIcon />, link: '/streams' },
+    { name: 'Live', icon: <VideoLibraryIcon />, link: '/live' },
+    { name: 'Library', icon: <VideoLibraryIcon />, link: '/library' },
+  ];
 
 const drawerWidth = 140;
 
@@ -83,7 +89,7 @@ const ListItemIcon = styled(MuiListItemIcon)(
 )
 
 export default function SideBar() {
-    const {open, setOpen} = useContext(SidebarContext) 
+    const { open, setOpen } = useContext(SidebarContext)
     const handleDrawerClose = () => {
         setOpen(false);
     };
@@ -111,52 +117,28 @@ export default function SideBar() {
             </DrawerHeader>
             <Divider />
             <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-                        <ListItemButton open={open}>
-                            <ListItemIcon open={open}>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {menuItems.map((item, index) => (
+                    <ListItem key={index} disablePadding sx={{ display: 'block' }}>
+                        <ListItemButton
+                            component={Link}
+                            to={item.link}
+                            sx={{ justifyContent: open ? 'initial' : 'center' }}
+                        >
+                            <ListItemIcon sx={{ minWidth: 0, mr: open ? 2 : 'auto', justifyContent: 'center' }}>
+                                {item.icon}
                             </ListItemIcon>
                             <ListItemText
-                                primary={text}
-                                sx={[
-                                    open
-                                        ? {
-                                            opacity: 1,
-                                        }
-                                        : {
-                                            opacity: 0,
-                                        },
-                                ]}
+                                primary={item.name}
+                                sx={{
+                                    opacity: open ? 1 : 0,
+                                    whiteSpace: 'nowrap',
+                                }}
                             />
                         </ListItemButton>
                     </ListItem>
                 ))}
             </List>
             <Divider />
-            <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-                        <ListItemButton open={open}>
-                            <ListItemIcon open={open}>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={text}
-                                sx={[
-                                    open
-                                        ? {
-                                            opacity: 1,
-                                        }
-                                        : {
-                                            opacity: 0,
-                                        },
-                                ]}
-                            />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
-            </List>
         </Drawer>
     );
 }
