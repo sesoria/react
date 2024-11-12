@@ -1,6 +1,7 @@
 import { useState, Suspense, lazy, useEffect } from "react";
 import { Grid2, Button, Box, CircularProgress, useMediaQuery } from "@mui/material";
 import { useTheme } from "@emotion/react";
+import { Link } from "react-router-dom";
 const StreamCard = lazy(() => import("./StreamCard")); // Lazy load del componente
 
 
@@ -45,10 +46,12 @@ const StreamGrid = () => {
               lg:4,
             }}
               key={index}
-          >
-            <Suspense fallback={<CircularProgress />}>
-              <StreamCard title={item}/>
-            </Suspense>
+              >
+              <Link to={`/streams/${index + 1}`} style={{ textDecoration: 'none' }}>
+                  <Suspense fallback={<CircularProgress />}>
+                      <StreamCard title={item} />
+                  </Suspense>
+              </Link>
           </Grid2>
         ))}
       </Grid2>

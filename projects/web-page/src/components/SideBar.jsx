@@ -14,7 +14,7 @@ import { Toolbar } from '@mui/material';
 import { useContext } from 'react';
 import SidebarContext from '../context/SidebarContext';
 
-const drawerWidth = 240;
+const drawerWidth = 140;
 
 const openedMixin = (theme) => ({
     width: drawerWidth,
@@ -78,7 +78,7 @@ const ListItemIcon = styled(MuiListItemIcon)(
         minWidth: 0,
         justifyContent: 'center',
         color: theme.palette.primary.contrastText,
-        marginRight: open ? '23px' : '14px', // Ajusta el margen aquí
+        marginRight: open ? '8px' : '8px', // Ajusta el margen aquí
     })
 )
 

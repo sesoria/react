@@ -7,6 +7,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useContext } from 'react';
 import { SidebarContext } from '../context/SidebarContext';
+import { Link } from 'react-router-dom';
 // Estilos personalizados para la barra de búsqueda
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -68,7 +69,7 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar component= 'nav'>
+    <AppBar component='nav'>
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         {/* Menú (a la izquierda) */}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -86,7 +87,16 @@ const Navbar = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Box component='img' src='../../public/urjc-removebg-preview.png' width='70px' height='60px'></Box>
+          <Link to="/"> {/* Reemplaza "/home" con la ruta a la que desees redirigir */}
+            <Box
+              component='img'
+              src='../../public/urjc-removebg-preview.png'
+              width='70px'
+              height='60px'
+              alt='URJC logo'
+              sx={{ cursor: 'pointer' }} // Añade un cursor de puntero para indicar que es clicable
+            />
+          </Link>
         </Box>
 
         {/* Barra de búsqueda */}
