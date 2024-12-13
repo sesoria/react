@@ -4,6 +4,7 @@ import ErrorPage from '../pages/Error';
 import Index from '../pages/Index';
 import StreamingPage from '../pages/StreamingPage';
 import StreamsPage from '../pages/StreamsPage';
+import SearchResults from '../components/Search/SearchResults';
 
 const router = createBrowserRouter([
     {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
                 errorElement: <ErrorPage />,
                 children: [
                     { index: true, element: <Index /> },
+                    {
+                        path: "/search",
+                        element: <SearchResults />
+                    },
                     {
                         path: "streams",
                         element: <StreamsPage />
